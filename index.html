@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>E-Millennial Store</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header id="header">
+    <div class="header-inner">
+      <div class="logo">
+        <img src="./EMS.svg" alt="EMS Logo" class="logo-img" />
+      </div>
+      <nav>
+        <a href="#home">Intro</a>
+        <a href="#about">About</a>
+        <a href="#shop">Shop</a>
+      </nav>
+      <button class="cart-btn" id="cartBtn" onclick="openCart()">
+        <img src="./cart.svg" alt="cart" class="cart-icon" />
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="intro" id="home">
+    <div class="intro-left">
+      <h1>THE <br/> E-MILLENIAL <br/> STORE</h1>
+    </div>
+    <div class="intro-right">
+      <img src="./heroImage.png" alt="EMS Hero" class="hero-img" />
+    </div>
+    <div class="intro-btn-wrap">
+      <a href="#shop" class="btn-primary">SHOP NOW</a>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="about" id="about">
+    <div class="about-inner">
+      <p>E-Millenial Store is an hypothetical online store for gadgets we believe every 'Millenial' or 'Gen-Z' should have today. We've got mobile phones, laptops, smartwatches and other gadgets. Explore all our gadgets and choose the ones that suit you.</p>
+    </div>
+  </section>
+
+  <!-- ===== SHOP ===== -->
+  <section class="shop" id="shop">
+    <div class="shop-inner">
+      <h2>OUR GADGETS</h2>
+      <div class="products-grid" id="productsGrid"></div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-inner">
+      <div class="logo">
+        <img src="./EMS.svg" alt="EMS Logo" class="logo-img" />
+      </div>
+      <p>Designed and Crafted by a &nbsp; Frontend Ninja</p>
+    </div>
+  </footer>
+
+  <!-- ===== CART MODAL ===== -->
+  <div class="modal-overlay" id="cartOverlay" onclick="handleOverlayClick(event)">
+    <div class="cart-modal" id="cartModal">
+
+      <!-- Header -->
+      <div class="modal-header">
+        <h3>Your Cart</h3>
+        <button class="close-btn" onclick="closeCart()">✕</button>
+      </div>
+
+      <!-- A: Items — JS writes the whole table in here -->
+      <div id="cartItemsContainer" class="cart-items-wrap">
+        <p class="empty-cart">Your cart is empty. Go grab something!</p>
+      </div>
+
+      <!-- B: User Details -->
+      <div class="user-details">
+        <div class="form-group">
+          <input type="text" id="userName" placeholder="Your Name" onblur="validateField('userName')" />
+          <span class="error-msg" id="userNameError"></span>
+        </div>
+        <div class="form-group">
+          <input type="email" id="userEmail" placeholder="Your Email" onblur="validateField('userEmail')" />
+          <span class="error-msg" id="userEmailError"></span>
+        </div>
+        <div class="form-group">
+          <input type="tel" id="userPhone" placeholder="Your Phone Number" onblur="validateField('userPhone')" />
+          <span class="error-msg" id="userPhoneError"></span>
+        </div>
+      </div>
+
+      <!-- C: Total -->
+      <div class="cart-total-section">
+        <p class="total-label">Total Amount to be Paid</p>
+        <p class="total-amount" id="cartTotal">GH₵ 0.00</p>
+      </div>
+
+      <!-- D: Actions -->
+      <div class="cart-actions">
+        <button class="btn-secondary" onclick="closeCart()">Continue Shopping</button>
+        <button class="btn-primary" onclick="handleCheckout()">Checkout</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== SUMMARY MODAL ===== -->
+  <div class="modal-overlay" id="summaryOverlay" role="dialog" aria-modal="true" aria-labelledby="summaryMessage">
+    <div class="summary-modal">
+      <h3 class="summary-heading" id="summaryMessage"></h3>
+      <div class="summary-check">
+        <img src="./check.svg" alt="Payment successful" class="check-icon" />
+      </div>
+      <p class="summary-title">Order Summary</p>
+      <div class="summary-table-wrap">
+        <table class="summary-table">
+          <thead>
+            <tr>
+              <th scope="col">S/N</th>
+              <th scope="col">Item</th>
+              <th scope="col" class="numeric-column">Unit Price</th>
+              <th scope="col" class="numeric-column">Quantity</th>
+              <th scope="col" class="numeric-column">Subtotal</th>
+            </tr>
+          </thead>
+          <tbody id="summaryItems"></tbody>
+          <tfoot>
+            <tr>
+              <th colspan="4" scope="row">Total</th>
+              <td id="summaryTotal" class="numeric-column">GH₵ 0.00</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <p class="summary-reference" id="summaryReference"></p>
+      <div class="summary-action">
+        <button class="btn-primary" type="button" onclick="closeSummary()">Ok</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./cart.js"></script>
+  <script src="./script.js"></script>
+</body>
+</html>
